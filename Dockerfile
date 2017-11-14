@@ -8,13 +8,16 @@ ENV PASSWORD=
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 8.9.1
 
-ENV DEPENDENCIES git-core gettext build-essential autoconf libtool libssl-dev libpcre3-dev \
+ENV DEPENDENCIES gettext build-essential autoconf libtool libssl-dev libpcre3-dev \
                  asciidoc xmlto zlib1g-dev libev-dev libudns-dev libsodium-dev \
-                 ca-certificates automake libmbedtls-dev curl python
+                 ca-certificates automake libmbedtls-dev
 
 # Set up building environment
 RUN apt-get update \
  && apt-get install --no-install-recommends -y $DEPENDENCIES
+
+# necessary dependencies
+RUN apt-get install --no-install-recommends curl wget git-core
 
 # get c9-sdk
 RUN git clone git://github.com/c9/core.git /c9sdk
