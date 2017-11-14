@@ -17,7 +17,7 @@ RUN apt-get update \
  && apt-get install --no-install-recommends -y $DEPENDENCIES
 
 # necessary dependencies
-RUN apt-get install --no-install-recommends -y curl wget git-core
+RUN apt-get install --no-install-recommends -y curl wget git-core python
 
 # get c9-sdk
 RUN git clone git://github.com/c9/core.git /c9sdk
