@@ -7,6 +7,7 @@ ENV USER user
 ENV PASSWORD password
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 8.9.1
+ENV LANG C.UTF-8
 
 ENV DEPENDENCIES gettext build-essential autoconf libtool libssl-dev libpcre3-dev \
                  asciidoc xmlto zlib1g-dev libev-dev libudns-dev libsodium-dev \
@@ -17,7 +18,7 @@ RUN apt-get update \
  && apt-get install --no-install-recommends -y $DEPENDENCIES
 
 # necessary dependencies
-RUN apt-get install --no-install-recommends -y curl wget git-core python
+RUN apt-get install --no-install-recommends -y curl wget git-core python sudo
 
 # get c9-sdk
 RUN git clone git://github.com/c9/core.git /c9sdk
@@ -31,6 +32,7 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh
     && nvm alias default $NODE_VERSION \
     && nvm use default
 # 
+
 
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
